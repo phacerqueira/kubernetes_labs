@@ -1,0 +1,28 @@
+# Pod utilizando o ConfigMap e o Secret como volumes
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cfm-vol-demo
+  labels:
+    name: cfm-vol-demo
+spec:
+  containers:
+    - name: alpine-cfm-vol-demo
+      image: alpine
+      command: ["sleep", "3600"]
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "0.5"
+      volumeMounts:
+        - name: player-map
+          mountPath: /etc/config/ConfigMap
+        - name: player-secret
+          mountPath: /etc/config/secret
+  volumes:
+    - name: player-map
+      configMap:
+        name: player-pro-demo
+    - name: player-secret
+      secret:
+        secretName: senha1

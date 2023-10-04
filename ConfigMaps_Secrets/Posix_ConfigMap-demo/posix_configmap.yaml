@@ -1,0 +1,10 @@
+# ConfigMap no estilo POSIX
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: posix-configmap-demo
+data:
+  PLAYER_LIVES: "5"
+  PROPRIETIES_FILE_NAME: "user-interface.proprieties"
+  BASE_PROPRIETIES: "Template1"
+  USER_INTERFACE_PROPRIETIES: "dark"

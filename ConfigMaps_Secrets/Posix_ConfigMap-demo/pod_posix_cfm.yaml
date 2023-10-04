@@ -1,0 +1,20 @@
+# Pod com imagem do meu web-app Javascript com todas as variáveis de um único ConfigMap
+apiVersion: v1
+kind: Pod
+metadata:
+  name: posix-cfm-pod
+  labels:
+    name: posix-cfm-pod
+spec:
+  containers:
+    - name: posix-cfm-container
+      image: phacerqueira/nginx_jsapp
+      ports:
+        - containerPort: 80
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "0.5"
+      envFrom:
+        - configMapRef:
+            name: posix-configmap-demo

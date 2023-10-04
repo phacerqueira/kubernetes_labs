@@ -1,0 +1,32 @@
+# Pod utilizando o ConfigMap e o Secret como variável de ambiente
+apiVersion: v1
+kind: Pod
+metadata:
+  name: configmap-demo
+  labels:
+    name: configmap-demo
+spec:
+  containers:
+    - name: alpine-configmap
+      image: alpine
+      command: ["sleep", "3600"]
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "0.5"
+      env:
+        - name: PLAYER_LIVES
+          valueFrom:
+            configMapKeyRef:
+              name: player-pro-demo
+              key: player_lives
+        - name: SECRET_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: senha1
+              key: username
+        - name: SECRET_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: senha1
+              key: password

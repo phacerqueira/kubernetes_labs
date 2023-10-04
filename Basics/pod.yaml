@@ -1,0 +1,18 @@
+#Pod básico para testes de Node Draining e Node Uncordon no Cluster
+apiVersion: v1
+kind: Pod
+metadata:
+    name: draining-node-test-pod
+    labels:
+        tier: frontend
+spec:
+    containers:
+    - name: nginx
+      image: nginx:latest
+      resources:
+        limits:
+          memory: "64Mi"
+          cpu: "0.5"
+      ports:
+      - containerPort: 80
+    restartPolicy: OnFailure
