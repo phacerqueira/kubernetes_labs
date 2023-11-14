@@ -21,6 +21,7 @@ spec:
         name: ph-jsapp-4mz7n
         ports:
         - containerPort: 80
+          name: http-web-svc
         resources: 
           limits:
             memory: "256Mi"
