@@ -1,0 +1,15 @@
+# Container para prova de vida de um container Nginx através de requisição HTTP GET
+apiVersion: v1
+kind: Pod
+metadata:
+  name: liveness-probe-http
+spec:
+  containers:
+    - name: liveness-nginx
+      image: k8s.gcr.io/nginx
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 3
+        periodSeconds: 3

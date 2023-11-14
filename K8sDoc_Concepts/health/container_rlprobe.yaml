@@ -1,0 +1,21 @@
+#Container para testes de prova de vida e prontidão de um container Nginx por HTTP GET
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hc-probe
+spec:
+  containers:
+    - name: nginx
+      image: k8s.gcr.io/nginx
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80
+        initialDelaySeconds: 3
+        periodSeconds: 3
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 9090 #porta de prontidão para falha proposital
+        initialDelaySeconds: 3
+        periodSeconds: 3
