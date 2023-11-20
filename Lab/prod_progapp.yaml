@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   labels:
     app: phapp
+    lang: javascript
+    func: progressao_aritmetica
   name: phapp
   namespace: ph-jsapp
 spec:
