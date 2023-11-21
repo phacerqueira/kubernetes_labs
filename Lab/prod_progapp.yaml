@@ -3,8 +3,6 @@ kind: Deployment
 metadata:
   labels:
     app: phapp
-    lang: javascript
-    func: progressao_aritmetica
   name: phapp
   namespace: ph-jsapp
 spec:
@@ -12,11 +10,14 @@ spec:
   selector:
     matchLabels:
       app: phapp
+
   strategy: {}
   template:
     metadata:
       labels:
         app: phapp
+        lang: javascript
+        func: prog_aritmetica
     spec:
       containers:
       - image: phacerqueira/nginx_jsapp:1.3
