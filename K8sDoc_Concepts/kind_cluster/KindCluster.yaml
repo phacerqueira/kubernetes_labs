@@ -1,0 +1,21 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: k8slabs
+nodes:
+  - role: control-plane
+  - role: worker
+    labels:
+      tier: frontend
+      env: prod
+  - role: worker
+    labels:
+      tier: frontend
+      env: homolog
+  - role: worker
+    labels:
+      tier: backend
+      env: prod
+  - role: worker
+    labels:
+      tier: backend
+      env: homolog
