@@ -17,8 +17,23 @@ spec:
         app: myapp
         tier: frontend
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - frontend
+              - key: env
+                operator: In
+                values:
+                - homolog
+                # Os pods do template só serão montados no Worker 2 do Cluster kind
       containers:
       - name: nginx
         image: nginx
         ports:
         - containerPort: 80
+
