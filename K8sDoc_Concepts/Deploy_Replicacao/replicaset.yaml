@@ -1,4 +1,4 @@
-#Replicaset com selector para apropriação de pods com match labels
+#Replicaset com selector para apropriação do controle de pods com match labels
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
