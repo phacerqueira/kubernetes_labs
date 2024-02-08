@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - image: phacerqueira/nginx_jsapp:1.3
-        name: ph-jsapp-4mz7n
+        name: ph-jsapp
         ports:
         - containerPort: 80
           name: http-web-svc
@@ -29,16 +29,16 @@ spec:
           requests:
             memory: "128Mi"
             cpu: "50m"
-      livenessProbe:
-        httpGet:
-          path: /
-          port: 80
-        initialDelaySeconds: 3
-        periodSeconds: 3
-      readinessProbe:
-        httpGet:
-          path: /
-          port: 80
-        initialDelaySeconds: 3
-        periodSeconds: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 3
 status: {}
