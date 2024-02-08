@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: phapp
+  name: phapp-psql-homolog
+  namespace: ph-jsapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: phapp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: phapp
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - backend
+              - key: env
+                operator: In
+                values:
+                - homolog
+      containers:
+      - image: postgres:16.1
+        name: phapp-psql-homolog
+        ports:
+        - containerPort: 5432
+          name: http-db-svc
+        resources: 
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+          requests:
+            memory: "128Mi"
+            cpu: "50m"
+        #Configurar user/pass/db para select de Liveness / readiness probe
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 80
+        #   initialDelaySeconds: 3
+        #   periodSeconds: 3
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 80
+        #   initialDelaySeconds: 3
+        #   periodSeconds: 3
+status: {}
