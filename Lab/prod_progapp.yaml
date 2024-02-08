@@ -16,6 +16,19 @@ spec:
       labels:
         app: phapp
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: tier
+                operator: In
+                values:
+                - frontend
+              - key: env
+                operator: In
+                values:
+                - homolog
       containers:
       - image: phacerqueira/nginx_jsapp:1.3
         name: ph-jsapp
