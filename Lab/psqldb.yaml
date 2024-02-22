@@ -42,17 +42,14 @@ spec:
           requests:
             memory: "128Mi"
             cpu: "50m"
-        #Configurar user/pass/db para select de Liveness / readiness probe
-        # livenessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: 80
-        #   initialDelaySeconds: 3
-        #   periodSeconds: 3
-        # readinessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: 80
-        #   initialDelaySeconds: 3
-        #   periodSeconds: 3
+        readinessProbe:
+          exec:
+            command: ["psql", "-w", "-U", "abcd", "-d", "my-db", "-c", "SELECT 1"]
+          initialDelaySeconds: 15
+          timeoutSeconds: 2
+        livenessProbe:
+          exec:
+            command: ["psql", "-w", "-U", "abcd", "-d", "my-db", "-c", "SELECT 1"]
+          initialDelaySeconds: 45
+          timeoutSeconds: 2
 status: {}
